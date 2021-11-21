@@ -1,0 +1,210 @@
+/* ****************************************
+*    Main wrapper and helper classes
+* ****************************************/
+
+#wrapper {
+  --width: 700px;
+  --height: 500px;
+  --vertical-center: calc(var(--height) / 2);
+  --horizontal-center: calc(var(--width) / 2);
+  --element-color: #333;
+  --line-margin: 100px;
+  --vertical-line-length: calc(var(--vertical-center) - var(--line-margin) - (var(--arrow-size) * 1.5));
+  --horizontal-line-length: calc(var(--horizontal-center) - var(--line-margin) - (var(--arrow-size) * 1.5));
+  --line-width: 10px;
+  --line-border-radius: 3px;
+  --arrow-size: 20px;
+  --icon-size: calc(var(--line-margin) - var(--arrow-size) - 20px);
+  width: var(--width);
+  height: var(--height);
+  border: 1px solid;
+  border-color: black;
+  position: relative;
+}
+
+.hidden {
+  display: none;
+}
+
+/* ****************************************
+*    Icons
+* ****************************************/
+
+.icon {
+  position: absolute;
+  font-size: calc(var(--icon-size) - 2px);
+  color: var(--element-color);
+  display: inline-block;
+  text-align: center;
+}
+
+.icon.horizontal {
+  top: calc(var(--vertical-center) - (var(--icon-size) / 2));
+}
+
+.icon.vertical {
+  left: calc(var(--horizontal-center) - (var(--icon-size) / 2));
+}
+
+.icon.top {
+  top: 0px;
+}
+
+.icon.bottom {
+  bottom: 0px;
+}
+
+.icon.left {
+  left: 0px;
+}
+
+.icon.right {
+  right: 0px;
+}
+
+/* ****************************************
+*    Labels
+* ****************************************/
+
+.label {
+  position: absolute;
+  font-family: "Arial";
+  color: var(--element-color);
+  font-weight: bold;
+  border: 2px solid;
+  border-color: var(--element-color);
+  border-radius: 3px;
+  padding: 3px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+#house-label {
+  left: 20px;
+  top: 10px;
+}
+
+#pv-label {
+  left: 20px;
+  bottom: 20px;
+}
+
+#battery-label {
+  left: 20px;
+  bottom: 20px;
+}
+
+#grid-label {
+  right: 20px;
+  bottom: 20px;
+}
+
+/* ****************************************
+*    Lines
+* ****************************************/
+
+.line-active {
+  border: solid;
+}
+
+.line-inactive {
+  color: #111;
+}
+
+.line-vertical {
+  width: var(--line-width);
+  height: var(--vertical-line-length);
+  left: calc(var(--horizontal-center) - (var(--line-width) / 2));
+  background-color: var(--element-color);
+  border-radius: var(--line-border-radius);
+  position: relative;
+}
+
+.line-vertical.up {
+  position: absolute;
+  top: var(--line-margin);
+}
+
+.line-vertical.down {
+  position: absolute;
+  bottom: var(--line-margin);
+}
+
+.line-horizontal {
+  width: var(--horizontal-line-length);
+  height: var(--line-width);
+  top: calc(var(--vertical-center) - (var(--line-width) / 2));
+  background-color: var(--element-color);
+  border-radius: var(--line-border-radius);
+}
+
+.line-horizontal.left {
+  position: absolute;
+  left: var(--line-margin);
+}
+
+.line-horizontal.right {
+  position: absolute;
+  right: var(--line-margin);
+}
+
+/* ****************************************
+*    Arrows
+*
+*    Source: https://codepen.io/Sfate/pen/ngqfl
+* ****************************************/
+
+.arrow-triangle {
+  background-color: var(--element-color);
+}
+
+.arrow-triangle:before,
+.arrow-triangle:after {
+  content: "";
+  position: absolute;
+  background-color: inherit;
+}
+
+.arrow-triangle,
+.arrow-triangle:before,
+.arrow-triangle:after {
+  width: var(--arrow-size);
+  height: var(--arrow-size);
+  border-top-right-radius: 30%;
+}
+
+.arrow-triangle.right {
+  position: absolute;
+  right: calc(-1 * (var(--arrow-size) / 2));
+  top: calc(-1 * (var(--arrow-size) - var(--line-width)));
+  transform: rotate(-90deg) skewX(-30deg) scale(1, 0.866);
+}
+
+.arrow-triangle.left {
+  position: absolute;
+  left: calc(-1 * (var(--arrow-size) / 2));
+  top: calc(-1 * (var(--arrow-size) - var(--line-width)));
+  transform: rotate(-30deg) skewX(-30deg) scale(1, 0.866);
+}
+
+.arrow-triangle.up {
+  position: absolute;
+  top: calc(-1 * var(--arrow-size));
+  left: calc(-1 * (var(--arrow-size) / 4));
+  transform: rotate(-60deg) skewX(-30deg) scale(1, 0.866);
+}
+
+.arrow-triangle.down {
+  position: absolute;
+  bottom: calc(-1 * (var(--arrow-size) / 2));
+  left: calc(-1 * (var(--arrow-size) / 2));
+  transform: rotate(-120deg) skewX(-30deg) scale(1, 0.866);
+}
+
+.arrow-triangle:before {
+  transform: rotate(-135deg) skewX(-45deg) scale(1.414, 0.707) translate(0, -50%);
+}
+
+.arrow-triangle:after {
+  transform: rotate(135deg) skewY(-45deg) scale(0.707, 1.414) translate(50%);
+}
