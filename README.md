@@ -67,7 +67,7 @@ Please refer to [MMM-EnergyMonitor default configuration](MMM-EnergyMonitor.js) 
 | `wattConversionOptions`.`numDecimalDigits` | *Optional* To how many decimal digits should the converted value be shortened (keep this value low to prevent UI glitches) <br><br>**Type:** `int` <br>Default: `2` (example: 1.45 kW)
 | `logNotifications` | *Optional* If the module should log the data notifications/updates it receives. This value is good for debugging if the module shows weird values.<br><br>**Type:** `boolean` (on/off)<br>Default: `false` off
 
-## Developing a data source
+## Data Sources
 
 Per default, my companion modules [MMM-Fronius2](https://github.com/deg0nz/MMM-Fronius2) and [MMM-VartaESS](https://github.com/deg0nz/MMM-VartaESS) are able to send data to this module. You can use other modules as data sources for this module.
 
@@ -77,8 +77,8 @@ Other modules can send the following notifications to update data for this modul
 
 | Notification                                    | Unit | What is updated | Interpretation
 |-------------------------------------------------|------| ----------------|--------------------------------------------------
-| `MMM-EnergyMonitor_ENERGY_STORAGE_POWER_UPDATE` | Watt | Energy Storage  | **Negative** values ar interpreted as **drawing** power **from the energy storage**. **Positive** values are interpreted as **charging the energy storage**. 
-| `MMM-EnergyMonitor_GRID_POWER_UPDATE`           | Watt | Grid Power      | **Negative** values ar interpreted as *drawing* power *from the grid*. **Positive** values are interpreted as **feeding** back **into the grid**. 
+| `MMM-EnergyMonitor_ENERGY_STORAGE_POWER_UPDATE` | Watt | Energy Storage  | **Negative** values ar interpreted as **drawing** power **from the energy storage**.<br>**Positive** values are interpreted as **charging the energy storage**. 
+| `MMM-EnergyMonitor_GRID_POWER_UPDATE`           | Watt | Grid Power      | **Negative** values ar interpreted as *drawing* power *from the grid*.<br>**Positive** values are interpreted as **feeding** back **into the grid**. 
 | `MMM-EnergyMonitor_SOLAR_POWER_UPDATE`          | Watt | Solar Power     | The currently produced solar powwer. This value must always be 0 or positive.
 
 ## Special Thanks
