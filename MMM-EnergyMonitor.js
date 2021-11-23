@@ -18,7 +18,8 @@ Module.register("MMM-EnergyMonitor", {
             enabled: true,
             threshold: 1200,
             numDecimalDigits: 2,
-        }
+        },
+        logNotifications: false
     },
 
     requiresVersion: "2.17.0", // Required version of MagicMirror
@@ -271,7 +272,7 @@ Module.register("MMM-EnergyMonitor", {
         
         // Unit: Watt | negative: discharge | positive: charge
         if (notification === "MMM-EnergyMonitor_ENERGY_STORAGE_POWER_UPDATE") {
-            if(!this.validateNumberPayload(payload, sender))
+            if(!this.validateNumberPayload(notification, payload, sender))
                 return;
 
             this.currentData.battery = payload;
@@ -279,7 +280,7 @@ Module.register("MMM-EnergyMonitor", {
 
         // Unit: Watt | negative: consume from grid | positive: feed to grid
         if (notification === "MMM-EnergyMonitor_GRID_POWER_UPDATE") {
-            if(!this.validateNumberPayload(payload, sender))
+            if(!this.validateNumberPayload(notification, payload, sender))
                 return;
 
             this.currentData.grid = payload;
@@ -287,7 +288,7 @@ Module.register("MMM-EnergyMonitor", {
 
         // Unit: Watt | cannot be negative
         if (notification === "MMM-EnergyMonitor_SOLAR_POWER_UPDATE") {
-            if(!this.validateNumberPayload(payload, sender))
+            if(!this.validateNumberPayload(notification, payload, sender))
                 return;
 
             this.currentData.solar = payload < 0 ? 0 : payload ;
