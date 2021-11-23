@@ -2,7 +2,7 @@
     "HOME_CONSUMPTION": "Verbrauch",
     "SOLAR_PRODUCING": "Erzeugen",
     "GRID_BACKFEEDING": "Einspeisen",
-    "GRID_CONSUMING": "Entnahme",
+    "GRID_CONSUMPTION": "Entnahme",
     "GRID_IDLE": "Inaktiv",
     "BATTERY_CHARGING": "Laden",
     "BATTERY_DISCHARGING": "Entladen",
