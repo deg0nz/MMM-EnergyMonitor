@@ -12,8 +12,9 @@ Module.register("MMM-EnergyMonitor", {
         hidden: false,
         updateInterval: 3000,
         energyStorage: true,
-        width: "300px",
-        height: "300px",
+        width: "700px",
+        height: "600px",
+        lineWidth: "10px",
         wattConversionOptions: {
             enabled: true,
             threshold: 1200,
@@ -48,6 +49,9 @@ Module.register("MMM-EnergyMonitor", {
         // create element wrapper for show into the module
         const wrapper = document.createElement("div");
         wrapper.id = "energymonitor-wrapper";
+        wrapper.style.setProperty("--width", this.config.width);
+        wrapper.style.setProperty("--height", this.config.height);
+        wrapper.style.setProperty("--line-width", this.config.lineWidth);
 
         this.addIcons(wrapper);
 
