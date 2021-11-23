@@ -1,0 +1,30 @@
+{
+  "name": "mmm-energymonitor",
+  "version": "0.1.0",
+  "description": "MagicMirror module to show information produced and consumed energy in a house",
+  "main": "MMM-EnergyMonitor.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deg0nz/MMM-EnergyMonitor.git"
+  },
+  "keywords": [
+    "magicmirror",
+    "energy",
+    "monitor",
+    "storage",
+    "home",
+    "energymonitor"
+  ],
+  "engines": {
+    "node": ">=14"
+  },
+  "author": "Beh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/deg0nz/MMM-EnergyMonitor/issues"
+  },
+  "homepage": "https://github.com/deg0nz/MMM-EnergyMonitor#readme",
+}

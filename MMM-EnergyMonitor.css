@@ -2,28 +2,43 @@
 *    Main wrapper and helper classes
 * ****************************************/
 
-#wrapper {
+#energymonitor-wrapper {
   --width: 700px;
   --height: 500px;
   --vertical-center: calc(var(--height) / 2);
   --horizontal-center: calc(var(--width) / 2);
-  --element-color: #333;
-  --line-margin: 100px;
+  --element-color: var(--color-text);
+  --line-margin: 50px;
   --vertical-line-length: calc(var(--vertical-center) - var(--line-margin) - (var(--arrow-size) * 1.5));
   --horizontal-line-length: calc(var(--horizontal-center) - var(--line-margin) - (var(--arrow-size) * 1.5));
-  --line-width: 10px;
+  --line-width: 5px;
   --line-border-radius: 3px;
-  --arrow-size: 20px;
+  --arrow-size: 10px;
   --icon-size: calc(var(--line-margin) - var(--arrow-size) - 20px);
   width: var(--width);
   height: var(--height);
   border: 1px solid;
   border-color: black;
-  position: relative;
 }
 
 .hidden {
   display: none;
+}
+
+.active {
+  background-color: #FFE377;
+}
+
+.inactive {
+  background-color: var(--color-text-dimmed);
+}
+
+.font-green {
+  color: #CDEE69;
+}
+
+.font-red {
+  color: #E09690;
 }
 
 /* ****************************************
@@ -68,23 +83,26 @@
 
 .label {
   position: absolute;
-  font-family: "Arial";
   color: var(--element-color);
+  font-family: var(--font-primary);
   font-weight: bold;
+  font-size: var(--font-size-small);
   border: 2px solid;
   border-color: var(--element-color);
   border-radius: 3px;
   padding: 3px;
   text-align: center;
   white-space: nowrap;
+  width: 10ch;
+  position: absolute;
 }
 
-#house-label {
+#home-label {
   left: 20px;
   top: 10px;
 }
 
-#pv-label {
+#solar-label {
   left: 20px;
   bottom: 20px;
 }
@@ -102,14 +120,6 @@
 /* ****************************************
 *    Lines
 * ****************************************/
-
-.line-active {
-  border: solid;
-}
-
-.line-inactive {
-  color: #111;
-}
 
 .line-vertical {
   width: var(--line-width);
