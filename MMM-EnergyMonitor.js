@@ -169,14 +169,14 @@ Module.register("MMM-EnergyMonitor", {
 
         // Positive value means feeding to grid
         if(this.currentData.grid > 0) {
-            gridLabel.innerHTML += this.translate("GRID_CONSUMPTION");
+            gridLabel.innerHTML += this.translate("GRID_BACKFEEDING");
             gridLabel.classList.add("font-green");
 
             const gridArrowOut = document.createElement("div");
             gridArrowOut.classList.add("arrow-triangle", "right", "active");
             gridLine.appendChild(gridArrowOut);
         } else if(this.currentData.grid < 0) {
-            gridLabel.innerHTML += this.translate("GRID_BACKFEEDING");
+            gridLabel.innerHTML += this.translate("GRID_CONSUMPTION");
             gridLabel.classList.add("font-red");
 
             const gridArrowIn = document.createElement("div");
