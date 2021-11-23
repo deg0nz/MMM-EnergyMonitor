@@ -3,19 +3,20 @@
 * ****************************************/
 
 #energymonitor-wrapper {
-  --width: 600px;
-  --height: 500px;
-  --vertical-center: calc(var(--height) / 2);
-  --horizontal-center: calc(var(--width) / 2);
-  --line-margin: 80px;
-  --arrow-size: 30px;
-  --vertical-line-length: calc(var(--vertical-center) - var(--line-margin) - (var(--arrow-size) * 1.1));
-  --horizontal-line-length: calc(var(--horizontal-center) - var(--line-margin) - (var(--arrow-size) * 1.1));
-  --line-width: 10px;
-  --line-border-radius: 3px;
-  --icon-size: calc(var(--line-margin) * 0.5);
+  --width: 700px;
+  --height: 600px;
+  --line-width: 12px;
   --active-color: #FFE377;
   --default-color: var(--color-text);
+  --line-margin: calc(var(--line-width) * 8);
+  --vertical-center: calc(var(--height) / 2);
+  --horizontal-center: calc(var(--width) / 2);
+  --line-border-radius: calc(var(--line-width) / 5);
+  --arrow-size: calc(var(--line-width) * 3);
+  --vertical-line-length: calc(var(--vertical-center) - var(--line-margin) - (var(--arrow-size) * 1.1));
+  --horizontal-line-length: calc(var(--horizontal-center) - var(--line-margin) - (var(--arrow-size) * 1.1));
+  --icon-size: calc(var(--line-margin) * 0.5);
+
   width: var(--width);
   height: var(--height);
   position: absolute;
