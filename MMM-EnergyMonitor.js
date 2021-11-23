@@ -108,7 +108,7 @@ Module.register("MMM-EnergyMonitor", {
 
     generateSolarLine: function() {
         const solarLine = document.createElement("div");
-        solarLine.classList.add("line-horizontal", "left");
+        solarLine.classList.add("line", "horizontal", "left");
         
         const solarLabel = document.createElement("div");
         solarLabel.id = "solar-label";
@@ -120,8 +120,8 @@ Module.register("MMM-EnergyMonitor", {
         if(this.currentData.solar > 0) {
             solarLine.classList.add("active");
 
-            const solarArrowOut = document.createElement("div");
-            solarArrowOut.classList.add("arrow-triangle", "right", "active");
+            const solarArrowOut = document.createElement("i");
+            solarArrowOut.classList.add("arrow", "right", "active");
             solarLine.appendChild(solarArrowOut);
         } else {
             solarLine.classList.add("dimmed");
@@ -133,7 +133,7 @@ Module.register("MMM-EnergyMonitor", {
     generateHomeLine: function() {
         this.calculateHomeConsumption();
         const homeLine = document.createElement("div");
-        homeLine.classList.add("line-vertical", "up");
+        homeLine.classList.add("line", "vertical", "up");
         
         const homeLabel = document.createElement("div");
         homeLabel.id = "home-label";
@@ -146,8 +146,13 @@ Module.register("MMM-EnergyMonitor", {
             homeLine.classList.add("active");
 
             const homeArrowIn = document.createElement("div");
-            homeArrowIn.classList.add("arrow-triangle", "up", "active");
+            homeArrowIn.classList.add("arrow", "up", "active");
             homeLine.appendChild(homeArrowIn);
+
+            // const arrowIn = document.createElement("img");
+            // arrowIn.src = "./img/caret-down.svg";
+            // arrowIn.classList.add("arrow", "up", "active");
+            // homeLabel.appendChild(arrowIn);
         } else {
             homeLine.classList.add("dimmed");
         }
@@ -157,16 +162,16 @@ Module.register("MMM-EnergyMonitor", {
 
     generateGridLine: function() {
         const gridLine = document.createElement("div");
-        gridLine.classList.add("line-horizontal", "right");
+        gridLine.classList.add("line", "horizontal", "right");
+                
+        if(this.currentData.grid !== 0)
+            gridLine.classList.add("active");
 
         const gridLabel = document.createElement("div");
         gridLabel.id = "grid-label";
         gridLabel.classList.add("label");
         gridLabel.innerHTML = `${this.getWattString(Math.abs(this.currentData.grid))}<br>`;
         gridLine.appendChild(gridLabel);
-        
-        if(this.currentData.grid !== 0)
-            gridLine.classList.add("active");
 
         // Positive value means feeding to grid
         if(this.currentData.grid > 0) {
@@ -174,14 +179,14 @@ Module.register("MMM-EnergyMonitor", {
             gridLabel.classList.add("font-green");
 
             const gridArrowOut = document.createElement("div");
-            gridArrowOut.classList.add("arrow-triangle", "right", "active");
+            gridArrowOut.classList.add("arrow", "right", "active");
             gridLine.appendChild(gridArrowOut);
         } else if(this.currentData.grid < 0) {
             gridLabel.innerHTML += this.translate("GRID_CONSUMPTION");
             gridLabel.classList.add("font-red");
 
             const gridArrowIn = document.createElement("div");
-            gridArrowIn.classList.add("arrow-triangle", "left", "active");
+            gridArrowIn.classList.add("arrow", "left", "active");
             gridLine.appendChild(gridArrowIn);
         } else {
             gridLabel.innerHTML += this.translate("GRID_IDLE");
@@ -193,7 +198,7 @@ Module.register("MMM-EnergyMonitor", {
 
     generateBatteryLine: function() {
         const batteryLine = document.createElement("div");
-        batteryLine.classList.add("line-vertical", "down");
+        batteryLine.classList.add("line", "vertical", "down");
 
         const batteryLabel = document.createElement("div");
         batteryLabel.id = "battery-label";
@@ -209,15 +214,15 @@ Module.register("MMM-EnergyMonitor", {
             batteryLabel.innerHTML += this.translate("BATTERY_CHARGING");
             batteryLabel.classList.add("font-green");
 
-            const batteryArrowIn = document.createElement("div");
-            batteryArrowIn.classList.add("arrow-triangle", "down", "active");
+            const batteryArrowIn = document.createElement("i");
+            batteryArrowIn.classList.add("fas", "fa-caret-down", "arrow", "down", "active");
             batteryLine.appendChild(batteryArrowIn);
         } else if(this.currentData.battery < 0) {
             batteryLabel.innerHTML += this.translate("BATTERY_DISCHARGING");
             batteryLabel.classList.add("font-red");
 
-            const batteryArrowOut = document.createElement("div");
-            batteryArrowOut.classList.add("arrow-triangle", "up", "active");
+            const batteryArrowOut = document.createElement("i");
+            batteryArrowOut.classList.add("fas", "fa-caret-up", "arrow", "up", "active");
             batteryLine.appendChild(batteryArrowOut);
         } else {
             batteryLabel.innerHTML += this.translate("BATTERY_IDLE");
@@ -237,7 +242,7 @@ Module.register("MMM-EnergyMonitor", {
           return `${(value / 1000).toFixed(wattConversionOptions.numDecimalDigits)} kW`;
         }
     
-        return `${value} W`;
+        return `${value.toFixed(wattConversionOptions.numDecimalDigits)} W`;
     },
 
     getScripts: function () {
@@ -245,7 +250,7 @@ Module.register("MMM-EnergyMonitor", {
     },
 
     getStyles: function () {
-        return ["MMM-EnergyMonitor.css", "fontawesome.css"];
+        return ["MMM-EnergyMonitor.css", "fontawesome.css", "triangle.css"];
     },
 
     // Load translations files
@@ -256,12 +261,16 @@ Module.register("MMM-EnergyMonitor", {
         };
     },
 
-    validateNumberPayload(payload, sender) {
+    validateNumberPayload(notification, payload, sender, ) {
         if(typeof payload !== "number") {
-            Log.info(`EnergyMonitor received data that is NaN: ${payload} from sender: ${sender.name}`);
+            if(this.logNotifications)
+                Log.info(`EnergyMonitor received data that is NaN: ${payload} from sender: ${sender.name} via notification: ${notification}`);
+            
             return false;
         } else {
-            Log.info(`EnergyMonitor received data: ${payload} from sender: ${sender.name}`);
+            if(this.logNotifications)
+                Log.info(`EnergyMonitor received data: ${payload} from sender: ${sender.name} via notification: ${notification}`);
+            
             return true;
         }
     },

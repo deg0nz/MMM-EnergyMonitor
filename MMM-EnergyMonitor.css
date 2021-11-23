@@ -4,22 +4,24 @@
 
 #energymonitor-wrapper {
   --width: 600px;
-  --height: 400px;
+  --height: 500px;
   --vertical-center: calc(var(--height) / 2);
   --horizontal-center: calc(var(--width) / 2);
-  --element-color: var(--color-text);
-  --line-margin: 50px;
-  --vertical-line-length: calc(var(--vertical-center) - var(--line-margin) - (var(--arrow-size) * 1.5));
-  --horizontal-line-length: calc(var(--horizontal-center) - var(--line-margin) - (var(--arrow-size) * 1.5));
-  --line-width: 5px;
+  --line-margin: 80px;
+  --arrow-size: 30px;
+  --vertical-line-length: calc(var(--vertical-center) - var(--line-margin) - (var(--arrow-size) * 1.1));
+  --horizontal-line-length: calc(var(--horizontal-center) - var(--line-margin) - (var(--arrow-size) * 1.1));
+  --line-width: 10px;
   --line-border-radius: 3px;
-  --arrow-size: 10px;
-  --icon-size: calc(var(--line-margin) - var(--arrow-size) - 5px);
+  --icon-size: calc(var(--line-margin) * 0.5);
+  --active-color: #FFE377;
+  --default-color: var(--color-text);
   width: var(--width);
   height: var(--height);
   position: absolute;
   left: calc(50% - (var(--width) / 2));
-  top:25%;
+  top: calc(50% - (var(--width) / 2));
+  background-color: var(--color-background);
 }
 
 .hidden {
@@ -27,6 +29,7 @@
 }
 
 .active {
+  color: #FFE377;
   background-color: #FFE377;
 }
 
@@ -48,8 +51,8 @@
 
 .icon {
   position: absolute;
-  font-size: calc(var(--icon-size) - 2px);
-  color: var(--element-color);
+  font-size: var(--icon-size);
+  color: var(--default-color);
   display: inline-block;
   text-align: center;
 }
@@ -84,12 +87,12 @@
 
 .label {
   position: absolute;
-  color: var(--element-color);
+  color: var(--default-color);
   font-family: var(--font-primary);
   font-weight: bold;
   font-size: var(--font-size-small);
   border: 2px solid;
-  border-color: var(--element-color);
+  border-color: var(--default-color);
   border-radius: 3px;
   padding: 3px;
   text-align: center;
@@ -122,100 +125,91 @@
 *    Lines
 * ****************************************/
 
-.line-vertical {
+.line {
+  background-color: var(--default-color);
+}
+
+.line.active {
+  background-color: var(--active-color);
+}
+
+.line.vertical {
   width: var(--line-width);
   height: var(--vertical-line-length);
   left: calc(var(--horizontal-center) - (var(--line-width) / 2));
-  background-color: var(--element-color);
   border-radius: var(--line-border-radius);
   position: relative;
 }
 
-.line-vertical.up {
+.line.vertical.up {
   position: absolute;
   top: var(--line-margin);
 }
 
-.line-vertical.down {
+.line.vertical.down {
   position: absolute;
   bottom: var(--line-margin);
 }
 
-.line-horizontal {
+.line.horizontal {
   width: var(--horizontal-line-length);
   height: var(--line-width);
   top: calc(var(--vertical-center) - (var(--line-width) / 2));
-  background-color: var(--element-color);
   border-radius: var(--line-border-radius);
 }
 
-.line-horizontal.left {
+.line.horizontal.left {
   position: absolute;
   left: var(--line-margin);
 }
 
-.line-horizontal.right {
+.line.horizontal.right {
   position: absolute;
   right: var(--line-margin);
 }
 
 /* ****************************************
 *    Arrows
-*
-*    Source: https://codepen.io/Sfate/pen/ngqfl
 * ****************************************/
 
-.arrow-triangle {
-  background-color: var(--element-color);
-}
 
-.arrow-triangle:before,
-.arrow-triangle:after {
-  content: "";
-  position: absolute;
-  background-color: inherit;
-}
-
-.arrow-triangle,
-.arrow-triangle:before,
-.arrow-triangle:after {
+.arrow {
+  --arrow-line-distance: calc(-1 * var(--arrow-size) + 3px);
+  --arrow-line-centering: calc(-1 * (var(--arrow-size) / 2) + (var(--line-width) / 2));
   width: var(--arrow-size);
   height: var(--arrow-size);
-  border-top-right-radius: 30%;
+  background-color: rgba(0, 0, 0, 0);
+  content: url("img/caret-down.svg");
 }
 
-.arrow-triangle.right {
+.arrow.active {
+  filter: invert(94%) sepia(68%) saturate(714%) hue-rotate(323deg) brightness(102%) contrast(101%);
+}
+
+.arrow.right {
   position: absolute;
-  right: calc(-1 * (var(--arrow-size) / 2));
-  top: calc(-1 * (var(--arrow-size) - var(--line-width)));
-  transform: rotate(-90deg) skewX(-30deg) scale(1, 0.866);
+  right: -1;
+  transform: rotate(-90deg);
+  right: var(--arrow-line-distance);
+  top: var(--arrow-line-centering);
 }
 
-.arrow-triangle.left {
+.arrow.left {
   position: absolute;
-  left: calc(-1 * (var(--arrow-size) / 2));
-  top: calc(-1 * (var(--arrow-size) - var(--line-width)));
-  transform: rotate(-30deg) skewX(-30deg) scale(1, 0.866);
+  transform: rotate(90deg);
+  left: var(--arrow-line-distance);
+  top: var(--arrow-line-centering);
 }
 
-.arrow-triangle.up {
+.arrow.up {
   position: absolute;
-  top: calc(-1 * var(--arrow-size));
-  left: calc(-1 * (var(--arrow-size) / 4));
-  transform: rotate(-60deg) skewX(-30deg) scale(1, 0.866);
+  transform: rotate(180deg);
+  top: var(--arrow-line-distance);
+  left: var(--arrow-line-centering);
 }
 
-.arrow-triangle.down {
+.arrow.down {
   position: absolute;
-  bottom: calc(-1 * (var(--arrow-size) / 2));
-  left: calc(-1 * (var(--arrow-size) / 2));
-  transform: rotate(-120deg) skewX(-30deg) scale(1, 0.866);
-}
-
-.arrow-triangle:before {
-  transform: rotate(-135deg) skewX(-45deg) scale(1.414, 0.707) translate(0, -50%);
-}
-
-.arrow-triangle:after {
-  transform: rotate(135deg) skewY(-45deg) scale(0.707, 1.414) translate(50%);
+  bottom: var(--arrow-line-distance);
+  left: var(--arrow-line-centering);
 }
