@@ -47,8 +47,6 @@ Module.register("MMM-EnergyMonitor", {
         // create element wrapper for show into the module
         const wrapper = document.createElement("div");
         wrapper.id = "energymonitor-wrapper";
-        wrapper.style.setProperty('--width', this.config.width);
-        wrapper.style.setProperty('--height', this.config.height);
 
         this.addIcons(wrapper);
 

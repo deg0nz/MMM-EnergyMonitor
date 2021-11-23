@@ -3,8 +3,8 @@
 * ****************************************/
 
 #energymonitor-wrapper {
-  --width: 700px;
-  --height: 500px;
+  --width: 600px;
+  --height: 400px;
   --vertical-center: calc(var(--height) / 2);
   --horizontal-center: calc(var(--width) / 2);
   --element-color: var(--color-text);
@@ -14,11 +14,12 @@
   --line-width: 5px;
   --line-border-radius: 3px;
   --arrow-size: 10px;
-  --icon-size: calc(var(--line-margin) - var(--arrow-size) - 20px);
+  --icon-size: calc(var(--line-margin) - var(--arrow-size) - 5px);
   width: var(--width);
   height: var(--height);
-  border: 1px solid;
-  border-color: black;
+  position: absolute;
+  left: calc(50% - (var(--width) / 2));
+  top:25%;
 }
 
 .hidden {
