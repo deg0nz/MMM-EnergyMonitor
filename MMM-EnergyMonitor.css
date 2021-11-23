@@ -189,7 +189,6 @@
 
 .arrow.right {
   position: absolute;
-  right: -1;
   transform: rotate(-90deg);
   right: var(--arrow-line-distance);
   top: var(--arrow-line-centering);
