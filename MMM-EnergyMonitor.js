@@ -244,10 +244,6 @@ Module.register("MMM-EnergyMonitor", {
         return `${Math.round(value)} W`;
     },
 
-    getScripts: function () {
-        return [];
-    },
-
     getStyles: function () {
         return ["MMM-EnergyMonitor.css", "fontawesome.css", "triangle.css"];
     },
