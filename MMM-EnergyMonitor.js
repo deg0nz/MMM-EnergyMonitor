@@ -152,11 +152,6 @@ Module.register("MMM-EnergyMonitor", {
             const homeArrowIn = document.createElement("div");
             homeArrowIn.classList.add("arrow", "up", "active");
             homeLine.appendChild(homeArrowIn);
-
-            // const arrowIn = document.createElement("img");
-            // arrowIn.src = "./img/caret-down.svg";
-            // arrowIn.classList.add("arrow", "up", "active");
-            // homeLabel.appendChild(arrowIn);
         } else {
             homeLine.classList.add("dimmed");
         }
@@ -246,7 +241,7 @@ Module.register("MMM-EnergyMonitor", {
           return `${(value / 1000).toFixed(wattConversionOptions.numDecimalDigits)} kW`;
         }
     
-        return `${value.toFixed(wattConversionOptions.numDecimalDigits)} W`;
+        return `${Math.round(value)} W`;
     },
 
     getScripts: function () {
