@@ -12,9 +12,9 @@ Module.register("MMM-EnergyMonitor", {
         hidden: false,
         updateInterval: 3000,
         energyStorage: true,
-        width: "700px",
-        height: "600px",
-        lineWidth: "10px",
+        width: "600px",
+        height: "500px",
+        lineWidth: "8px",
         wattConversionOptions: {
             enabled: true,
             threshold: 1200,

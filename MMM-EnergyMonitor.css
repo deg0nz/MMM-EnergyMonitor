@@ -3,9 +3,9 @@
 * ****************************************/
 
 #energymonitor-wrapper {
-  --width: 700px;
-  --height: 600px;
-  --line-width: 12px;
+  --width: 600px;
+  --height: 500px;
+  --line-width: 8px;
   --active-color: #FFE377;
   --default-color: var(--color-text);
   --line-margin: calc(var(--line-width) * 10);
@@ -15,7 +15,7 @@
   --arrow-size: calc(var(--line-width) * 3);
   --vertical-line-length: calc(var(--vertical-center) - var(--line-margin) - (var(--arrow-size) * 1.1));
   --horizontal-line-length: calc(var(--horizontal-center) - var(--line-margin) - (var(--arrow-size) * 1.1));
-  --icon-size: calc(var(--line-margin) * 0.6);
+  --icon-size: calc(var(--line-margin) * 0.5);
 
   width: var(--width);
   height: var(--height);
@@ -32,10 +32,6 @@
 .active {
   color: #FFE377;
   background-color: #FFE377;
-}
-
-.inactive {
-  background-color: var(--color-text-dimmed);
 }
 
 .font-green {
