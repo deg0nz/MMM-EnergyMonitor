@@ -20,7 +20,7 @@ Module.register("MMM-EnergyMonitor", {
             threshold: 1200,
             numDecimalDigits: 2,
         },
-        resetCycles: 3,
+        resetCycles: 4,
         logNotifications: false
     },
 
@@ -50,19 +50,19 @@ Module.register("MMM-EnergyMonitor", {
         setInterval(() => {
             this.updateDom();
             this.trackValueReset();
-        }, this.updateInterval);
+        }, this.config.updateInterval);
     },
 
     trackValueReset: function() {
         for (const dataType in this.resetCounter) {
-            if (Object.hasOwnProperty.call(this.resetCounter, dataType) && 
-                    Object.hasOwnProperty.call(this.currentData, dataType)) {
-                this.resetCounter[dataType] += 1;
+            if (this.resetCounter.hasOwnProperty(dataType)) {
                 
-                if(this.resetCounter[dataType] >= this.config.resetCycles) {
+                if(this.resetCounter[dataType] === this.config.resetCycles) {
                     this.currentData[dataType] = 0;
                     this.resetCounter[dataType] = 0;
                 }
+
+                this.resetCounter[dataType] += 1;
             }
         }
     },

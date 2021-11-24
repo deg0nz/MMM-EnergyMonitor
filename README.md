@@ -12,7 +12,7 @@ The module has the following features:
 * The module is developed to be used in *center regions* of the MagicMirror. If you want to use it somewhere else, please feel free to submit a Pull Request.
 * This module was developed as a companion to [MMM-Fronius2](https://github.com/deg0nz/MMM-Fronius2) and [MMM-VartaESS](https://github.com/deg0nz/MMM-VartaESS) to visualize their data. But other data sources are supported as well.
 
-**Attention: This module depends on external data sources. It cannot be used as standalone module. Please refer to the "Data Sources" section below!**
+**Attention: This module depends on external data sources. It _cannot_ be used as standalone module. Please refer to the "Data Sources" section below!**
 
 ## Installing
 
@@ -65,12 +65,12 @@ Please refer to [MMM-EnergyMonitor default configuration](MMM-EnergyMonitor.js) 
 | `wattConversionOptions`.`enabled` | *Optional* Turns the feature on/off<br><br>**Type:** `boolean` (on/off)<br>Default: `true` (on)
 | `wattConversionOptions`.`threshold` | *Optional* At which value should numbers be converted <br><br>**Type:** `int` (Watt) <br>Default: `1200` Watt
 | `wattConversionOptions`.`numDecimalDigits` | *Optional* To how many decimal digits should the converted value be shortened (keep this value low to prevent UI glitches) <br><br>**Type:** `int` <br>Default: `2` (example: 1.45 kW)
-| `resetCycles` | *Optional* After how many UI update cycles without new data should the values be reset to 0<br><br>**Type:** `int` (cycles) <br>Default: `3` cycles
+| `resetCycles` | *Optional* After how many UI update cycles without new data should the values be reset to 0. *Note: `resetCycles` * `updateInterval` musst be greater than the interval that updates the actual data!*<br><br>**Type:** `int` (cycles) <br>Default: `3` cycles
 | `logNotifications` | *Optional* If the module should log the data notifications/updates it receives. This value is good for debugging if the module shows weird values.<br><br>**Type:** `boolean` (on/off)<br>Default: `false` off
 
 ## Data Sources
 
-Per default, my companion modules [MMM-Fronius2](https://github.com/deg0nz/MMM-Fronius2) and [MMM-VartaESS](https://github.com/deg0nz/MMM-VartaESS) are able to send data to this module. You can use other modules as data sources for this module.
+Per default, the companion modules [MMM-Fronius2](https://github.com/deg0nz/MMM-Fronius2) and [MMM-VartaESS](https://github.com/deg0nz/MMM-VartaESS) are able to send data to this module. You can use other modules as data sources for this module.
 
 All the values are expected to be from the point of view of the corresponding system. Negative values are interpreted as *pulling energy from* the system. Positive values are interpreted as *pushing energy into* the system.
 
