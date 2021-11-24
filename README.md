@@ -65,6 +65,7 @@ Please refer to [MMM-EnergyMonitor default configuration](MMM-EnergyMonitor.js) 
 | `wattConversionOptions`.`enabled` | *Optional* Turns the feature on/off<br><br>**Type:** `boolean` (on/off)<br>Default: `true` (on)
 | `wattConversionOptions`.`threshold` | *Optional* At which value should numbers be converted <br><br>**Type:** `int` (Watt) <br>Default: `1200` Watt
 | `wattConversionOptions`.`numDecimalDigits` | *Optional* To how many decimal digits should the converted value be shortened (keep this value low to prevent UI glitches) <br><br>**Type:** `int` <br>Default: `2` (example: 1.45 kW)
+| `resetCycles` | *Optional* After how many UI update cycles without new data should the values be reset to 0<br><br>**Type:** `int` (cycles) <br>Default: `3` cycles
 | `logNotifications` | *Optional* If the module should log the data notifications/updates it receives. This value is good for debugging if the module shows weird values.<br><br>**Type:** `boolean` (on/off)<br>Default: `false` off
 
 ## Data Sources

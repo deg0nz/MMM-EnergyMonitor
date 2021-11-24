@@ -20,6 +20,7 @@ Module.register("MMM-EnergyMonitor", {
             threshold: 1200,
             numDecimalDigits: 2,
         },
+        resetCycles: 3,
         logNotifications: false
     },
 
@@ -33,6 +34,12 @@ Module.register("MMM-EnergyMonitor", {
             solar: 0
         };
 
+        this.resetCounter = {
+            battery: 0,
+            grid: 0,
+            solar: 0
+        };
+
         Log.info("MMM-EnergyMonitor started.");
         this.scheduleUpdate();
 
@@ -42,7 +49,22 @@ Module.register("MMM-EnergyMonitor", {
     scheduleUpdate: function () {
         setInterval(() => {
             this.updateDom();
+            this.trackValueReset();
         }, this.updateInterval);
+    },
+
+    trackValueReset: function() {
+        for (const dataType in this.resetCounter) {
+            if (Object.hasOwnProperty.call(this.resetCounter, dataType) && 
+                    Object.hasOwnProperty.call(this.currentData, dataType)) {
+                this.resetCounter[dataType] += 1;
+                
+                if(this.resetCounter[dataType] >= this.config.resetCycles) {
+                    this.currentData[dataType] = 0;
+                    this.resetCounter[dataType] = 0;
+                }
+            }
+        }
     },
 
     getDom: function () {
@@ -280,6 +302,7 @@ Module.register("MMM-EnergyMonitor", {
                 return;
 
             this.currentData.battery = payload;
+            this.resetCounter.battery = 0;
         }
 
         // Unit: Watt | negative: consume from grid | positive: feed to grid
@@ -288,6 +311,7 @@ Module.register("MMM-EnergyMonitor", {
                 return;
 
             this.currentData.grid = payload;
+            this.resetCounter.grid = 0;
         }
 
         // Unit: Watt | cannot be negative
@@ -296,6 +320,7 @@ Module.register("MMM-EnergyMonitor", {
                 return;
 
             this.currentData.solar = payload < 0 ? 0 : payload ;
+            this.resetCounter.solar = 0;
         }
     },
 });
