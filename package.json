@@ -1,6 +1,6 @@
 {
   "name": "mmm-energymonitor",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "MagicMirror module to show information produced and consumed energy in a house",
   "main": "MMM-EnergyMonitor.js",
   "scripts": {
