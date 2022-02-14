@@ -15,13 +15,19 @@ Module.register("MMM-EnergyMonitor", {
         width: "600px",
         height: "500px",
         lineWidth: "8px",
+        resetCycles: 4,
+        logNotifications: false,
         wattConversionOptions: {
             enabled: true,
             threshold: 1200,
             numDecimalDigits: 2,
         },
-        resetCycles: 4,
-        logNotifications: false
+        iconCssClasses: {
+            home: "fas fa-home",
+            grid: "fas fa-plug",
+            energyStorage: "fas fa-battery-half",
+            localPowerSource: "fas fa-solar-panel"
+        }
     },
 
     requiresVersion: "2.17.0", // Required version of MagicMirror
@@ -100,7 +106,7 @@ Module.register("MMM-EnergyMonitor", {
         solarPanel.className = "icon horizontal left";
 
         const solarPanelIcon = document.createElement("i");
-        solarPanelIcon.className = "fas fa-solar-panel";
+        solarPanelIcon.className = this.config.iconCssClasses.localPowerSource;
         solarPanel.appendChild(solarPanelIcon);
         wrapper.appendChild(solarPanel);
 
@@ -109,7 +115,7 @@ Module.register("MMM-EnergyMonitor", {
         home.className = "icon vertical top";
 
         const homeIcon = document.createElement("i");
-        homeIcon.className = "fas fa-home";
+        homeIcon.className = this.config.iconCssClasses.home;
         home.appendChild(homeIcon);
         wrapper.appendChild(home);
 
@@ -118,7 +124,7 @@ Module.register("MMM-EnergyMonitor", {
         grid.className = "icon horizontal right";
 
         const gridIcon = document.createElement("i");
-        gridIcon.className = "fas fa-plug";
+        gridIcon.className = this.config.iconCssClasses.grid;
         grid.appendChild(gridIcon);
         wrapper.appendChild(grid);
 
@@ -127,7 +133,7 @@ Module.register("MMM-EnergyMonitor", {
         battery.className = "icon vertical bottom";
 
         const batteryIcon = document.createElement("i");
-        batteryIcon.className = "fas fa-battery-half";
+        batteryIcon.className = this.config.iconCssClasses.energyStorage;
         battery.appendChild(batteryIcon);
         wrapper.appendChild(battery);
     },

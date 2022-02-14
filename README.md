@@ -61,12 +61,17 @@ Please refer to [MMM-EnergyMonitor default configuration](MMM-EnergyMonitor.js) 
 | `width`          | *Optional* The width of the module<br><br>**Type:** CSS size value <br>Default: `700px` (700 Pixel)
 | `lineWidth`      | *Optional* Thickness of the lines pointing to the center<br><br>**Type:** CSS size value <br>Default: `10px` (10 Pixel)
 | `updateInterval` | *Optional* How often should the UI be updated<br><br>**Type:** `int` (milliseconds) <br>Default: `3000` milliseconds (3 seconds)
-| `wattConversionOptions` | *Optional* Configures if and how Watts should ge converted to kW<br><br>**Type:** `object` <br>See configuration below
+| `resetCycles` | *Optional* After how many UI update cycles without new data should the values be reset to 0. *Note: `resetCycles` * `updateInterval` musst be greater than the interval that updates the actual data!*<br><br>**Type:** `int` (cycles) <br>Default: `3` cycles
+| `logNotifications` | *Optional* If the module should log the data notifications/updates it receives. This value is good for debugging if the module shows weird values.<br><br>**Type:** `boolean` (on/off)<br>Default: `false` off
+| `wattConversionOptions` | *Optional* Configures if and how Watts should get converted to kW<br><br>**Type:** `object` <br>See configuration below
 | `wattConversionOptions`.`enabled` | *Optional* Turns the feature on/off<br><br>**Type:** `boolean` (on/off)<br>Default: `true` (on)
 | `wattConversionOptions`.`threshold` | *Optional* At which value should numbers be converted <br><br>**Type:** `int` (Watt) <br>Default: `1200` Watt
 | `wattConversionOptions`.`numDecimalDigits` | *Optional* To how many decimal digits should the converted value be shortened (keep this value low to prevent UI glitches) <br><br>**Type:** `int` <br>Default: `2` (example: 1.45 kW)
-| `resetCycles` | *Optional* After how many UI update cycles without new data should the values be reset to 0. *Note: `resetCycles` * `updateInterval` musst be greater than the interval that updates the actual data!*<br><br>**Type:** `int` (cycles) <br>Default: `3` cycles
-| `logNotifications` | *Optional* If the module should log the data notifications/updates it receives. This value is good for debugging if the module shows weird values.<br><br>**Type:** `boolean` (on/off)<br>Default: `false` off
+| `iconCssClasses` | *Optional* Changes the default CSS classes of the icons. Currently, [Font Awesome free icons v5](https://fontawesome.com/v5/search) are supported. *Attention: don't forget the `fas` prefix as shown in the examples below!*<br><br>**Type:** `object` <br>See object properties below
+| `iconCssClasses`.`home` | *Optional* Icon for the home<br><br>**Type:** `string` (CSS classes)<br>Default: `fas fa-home` (Home icon)
+| `iconCssClasses`.`grid` | *Optional* Icon for the power grid<br><br>**Type:** `string` (CSS classes) <br>Default: `fas fa-plug` (Plug icon)
+| `iconCssClasses`.`energyStorage` | *Optional* Icon for the energy storage<br><br>**Type:** `string` (CSS classes)<br>Default: `fas fa-battery-half` (Battery half full)
+| `iconCssClasses`.`localPowerSource` | *Optional* Icon for the local power source (e.g. Solar Power)<br><br>**Type:** `string` (CSS classes)<br>Default: `fas fa-solar-panel` (Solar panel)
 
 ## Data Sources
 
