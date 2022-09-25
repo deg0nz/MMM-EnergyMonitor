@@ -23,10 +23,10 @@ Module.register("MMM-EnergyMonitor", {
             numDecimalDigits: 2,
         },
         iconCssClasses: {
-            home: "far fa-home",
-            grid: "far fa-plug",
-            energyStorage: "far fa-battery-half",
-            localPowerSource: "far fa-solar-panel"
+            home: "fas fa-home",
+            grid: "fas fa-plug",
+            energyStorage: "fas fa-battery-half",
+            localPowerSource: "fas fa-solar-panel"
         }
     },
 
