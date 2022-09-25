@@ -14,7 +14,7 @@ Module.register("MMM-EnergyMonitor", {
         energyStorage: true,
         width: "600px",
         height: "500px",
-        lineWidth: "8px",
+        lineWidth: "7px",
         resetCycles: 4,
         logNotifications: false,
         wattConversionOptions: {
@@ -23,10 +23,10 @@ Module.register("MMM-EnergyMonitor", {
             numDecimalDigits: 2,
         },
         iconCssClasses: {
-            home: "fas fa-home",
-            grid: "fas fa-plug",
-            energyStorage: "fas fa-battery-half",
-            localPowerSource: "fas fa-solar-panel"
+            home: "far fa-home",
+            grid: "far fa-plug",
+            energyStorage: "far fa-battery-half",
+            localPowerSource: "far fa-solar-panel"
         }
     },
 
