@@ -2,7 +2,7 @@
 
 This is a module for the [MagicMirror²](https://github.com/MichMich/MagicMirror/).
 
-This module visualizes current energy production and consumption of your home. It is meant to be used when you have a solar system (and an optional battery) installed in your home.
+This module visualizes current energy production and consumption of your home. It is meant to be used when you have a electric power generator (such as a photovoltaic system) and a battery (optional) installed in your home.
 
 ## About
 
@@ -71,7 +71,7 @@ Please refer to [MMM-EnergyMonitor default configuration](MMM-EnergyMonitor.js) 
 | `iconCssClasses`.`home` | *Optional* Icon for the home<br><br>**Type:** `string` (CSS classes)<br>Default: `fas fa-home` (Home icon)
 | `iconCssClasses`.`grid` | *Optional* Icon for the power grid<br><br>**Type:** `string` (CSS classes) <br>Default: `fas fa-plug` (Plug icon)
 | `iconCssClasses`.`energyStorage` | *Optional* Icon for the energy storage<br><br>**Type:** `string` (CSS classes)<br>Default: `fas fa-battery-half` (Battery half full)
-| `iconCssClasses`.`localPowerSource` | *Optional* Icon for the local power source (e.g. Solar Power)<br><br>**Type:** `string` (CSS classes)<br>Default: `fas fa-solar-panel` (Solar panel)
+| `iconCssClasses`.`localPowerSource` | *Optional* Icon for the local power source (e.g. Power)<br><br>**Type:** `string` (CSS classes)<br>Default: `fas fa-solar-panel` (Solar panel)
 
 ## Data Sources
 
