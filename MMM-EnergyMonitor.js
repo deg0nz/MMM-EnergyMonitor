@@ -46,7 +46,7 @@ Module.register("MMM-EnergyMonitor", {
             solar: 0
         };
 
-        Log.info("MMM-EnergyMonitor started.");
+        Log.log("MMM-EnergyMonitor started.");
         this.scheduleUpdate();
 
         this.loaded = true;
@@ -287,12 +287,12 @@ Module.register("MMM-EnergyMonitor", {
     validateNumberPayload(notification, payload, sender, ) {
         if(typeof payload !== "number") {
             if(this.logNotifications)
-                Log.info(`EnergyMonitor received data that is NaN: ${payload} from sender: ${sender.name} via notification: ${notification}`);
+                Log.log(`EnergyMonitor received data that is NaN: ${payload} from sender: ${sender.name} via notification: ${notification}`);
             
             return false;
         } else {
             if(this.logNotifications)
-                Log.info(`EnergyMonitor received data: ${payload} from sender: ${sender.name} via notification: ${notification}`);
+                Log.log(`EnergyMonitor received data: ${payload} from sender: ${sender.name} via notification: ${notification}`);
             
             return true;
         }
