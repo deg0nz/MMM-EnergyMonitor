@@ -285,18 +285,29 @@ Module.register("MMM-EnergyMonitor", {
     },
 
     validateNumberPayload(notification, payload, sender, ) {
+        if(typeof payload == "string") {
+             var number = parseFloat(payload);
+             if (isNaN(number)) {
+                if(this.config.logNotifications)
+                    Log.log(`EnergyMonitor received data that is of type string: ${payload} this cannot be converted to number. Sender: ${sender.name} via notification: ${notification}`);
+                return false;
+            } else {
+                payload = number;
+            }
+        }
         if(typeof payload !== "number") {
-            if(this.logNotifications)
-                Log.log(`EnergyMonitor received data that is NaN: ${payload} from sender: ${sender.name} via notification: ${notification}`);
+            if(this.config.logNotifications)
+                Log.log(`EnergyMonitor received data that is ${typeof payload}: ${payload} from sender: ${sender.name} via notification: ${notification}`);
             
             return false;
         } else {
-            if(this.logNotifications)
+            if(this.config.logNotifications)
                 Log.log(`EnergyMonitor received data: ${payload} from sender: ${sender.name} via notification: ${notification}`);
             
             return true;
-        }
+        } 
     },
+
 
     notificationReceived(notification, payload, sender) {
         if(!this.loaded)
