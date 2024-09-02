@@ -273,7 +273,7 @@ Module.register("MMM-EnergyMonitor", {
     },
 
     getStyles: function () {
-        return ["MMM-EnergyMonitor.css", "fontawesome.css"];
+        return ["MMM-EnergyMonitor.css", "font-awesome.css"];
     },
 
     // Load translations files
@@ -298,7 +298,7 @@ Module.register("MMM-EnergyMonitor", {
         if(typeof payload !== "number") {
             if(this.config.logNotifications)
                 Log.log(`EnergyMonitor received data that is ${typeof payload}: ${payload} from sender: ${sender.name} via notification: ${notification}`);
-            
+          
             return false;
         } else {
             if(this.config.logNotifications)
