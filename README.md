@@ -38,14 +38,10 @@ This means: I'm open for feature requests, pull requests, bug reports, ...
 To use this module, add the following configuration block to the modules array in the `config/config.js` file:
 
 ```js
-var config = {
-    modules: [
         {
             module: 'MMM-EnergyMonitor',
             position: 'middle_center'
-        }
-    ]
-}
+        },
 ```
 
 ## Configuration options
