@@ -89,7 +89,7 @@ Other modules can send the following notifications to update data for this modul
 
 ## Special Thanks
 
-* [MichMich](https://github.com/MichMich) for creating the Magic Mirror Project
+* [MichMich](https://github.com/MichMich) for creating the MagicMirror² Project
 * [hukl](http://smyck.net) for creating the [SMYCK color theme](http://color.smyck.org) on which the default colors are based
 
 ## Issues

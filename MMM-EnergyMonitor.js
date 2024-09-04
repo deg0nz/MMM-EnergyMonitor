@@ -1,5 +1,5 @@
 "use strict";
-/* Magic Mirror
+/* MagicMirror²
  * Module: MMM-EnergyMonitor
  *
  * By Beh (hello@beh.wtf)
