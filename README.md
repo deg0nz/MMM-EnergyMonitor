@@ -1,6 +1,6 @@
 # MMM-EnergyMonitor
 
-This is a module for the [MagicMirror²](https://github.com/MichMich/MagicMirror/).
+This is a module for the [MagicMirror²](https://github.com/MagicMirrorOrg/MagicMirror/).
 
 This module visualizes current energy production and consumption of your home. It is meant to be used when you have a electric power generator (such as a photovoltaic system) and a battery (optional) installed in your home.
 
