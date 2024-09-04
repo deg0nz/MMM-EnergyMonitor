@@ -20,7 +20,7 @@ This module has no external dependencies (apart from the data sources mentiones 
 
 ``` bash
 cd modules
-git clone https://github.com/deg0nz/MMM-EnergyMonitor.git
+git clone https://github.com/deg0nz/MMM-EnergyMonitor
 ```
 
 ## Status
