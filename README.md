@@ -1,6 +1,6 @@
 # MMM-EnergyMonitor
 
-This is a module for the [MagicMirror²](https://github.com/MichMich/MagicMirror/).
+This is a module for the [MagicMirror²](https://github.com/MagicMirrorOrg/MagicMirror/).
 
 This module visualizes current energy production and consumption of your home. It is meant to be used when you have a electric power generator (such as a photovoltaic system) and a battery (optional) installed in your home.
 
@@ -20,7 +20,7 @@ This module has no external dependencies (apart from the data sources mentiones 
 
 ``` bash
 cd modules
-git clone https://github.com/deg0nz/MMM-EnergyMonitor.git
+git clone https://github.com/deg0nz/MMM-EnergyMonitor
 ```
 
 ## Status
@@ -38,14 +38,10 @@ This means: I'm open for feature requests, pull requests, bug reports, ...
 To use this module, add the following configuration block to the modules array in the `config/config.js` file:
 
 ```js
-var config = {
-    modules: [
         {
             module: 'MMM-EnergyMonitor',
             position: 'middle_center'
-        }
-    ]
-}
+        },
 ```
 
 ## Configuration options
@@ -89,7 +85,7 @@ Other modules can send the following notifications to update data for this modul
 
 ## Special Thanks
 
-* [MichMich](https://github.com/MichMich) for creating the Magic Mirror Project
+* [MichMich](https://github.com/MichMich) for creating the MagicMirror² Project
 * [hukl](http://smyck.net) for creating the [SMYCK color theme](http://color.smyck.org) on which the default colors are based
 
 ## Issues
