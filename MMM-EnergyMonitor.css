@@ -19,7 +19,7 @@
 
   width: var(--width);
   height: var(--height);
-  position: absolute;
+  position: relative;
   left: calc(50% - (var(--width) / 2));
   top: calc(50% - (var(--width) / 2));
   background-color: var(--color-background);
