@@ -6,15 +6,19 @@
   --width: 600px;
   --height: 500px;
   --line-width: 8px;
-  --active-color: #FFE377;
+  --active-color: #ffe377;
   --default-color: var(--color-text);
   --line-margin: calc(var(--line-width) * 10);
   --vertical-center: calc(var(--height) / 2);
   --horizontal-center: calc(var(--width) / 2);
   --line-border-radius: calc(var(--line-width) / 5);
   --arrow-size: calc(var(--line-width) * 3);
-  --vertical-line-length: calc(var(--vertical-center) - var(--line-margin) - (var(--arrow-size) * 1.1));
-  --horizontal-line-length: calc(var(--horizontal-center) - var(--line-margin) - (var(--arrow-size) * 1.1));
+  --vertical-line-length: calc(
+    var(--vertical-center) - var(--line-margin) - (var(--arrow-size) * 1.1)
+  );
+  --horizontal-line-length: calc(
+    var(--horizontal-center) - var(--line-margin) - (var(--arrow-size) * 1.1)
+  );
   --icon-size: calc(var(--line-margin) * 0.5);
 
   width: var(--width);
@@ -30,16 +34,16 @@
 }
 
 .active {
-  color: #FFE377;
-  background-color: #FFE377;
+  color: #ffe377;
+  background-color: #ffe377;
 }
 
 .font-green {
-  color: #CDEE69;
+  color: #cdee69;
 }
 
 .font-red {
-  color: #E09690;
+  color: #e09690;
 }
 
 /* ****************************************
@@ -87,7 +91,7 @@
   color: var(--default-color);
   font-family: var(--font-primary);
   font-weight: bold;
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-xsmall);
   border: 2px solid;
   border-color: var(--default-color);
   border-radius: 3px;
@@ -169,18 +173,20 @@
 *    Arrows
 * ****************************************/
 
-
 .arrow {
   --arrow-line-distance: calc(-1 * var(--arrow-size) + 3px);
-  --arrow-line-centering: calc(-1 * (var(--arrow-size) / 2) + (var(--line-width) / 2));
+  --arrow-line-centering: calc(
+    -1 * (var(--arrow-size) / 2) + (var(--line-width) / 2)
+  );
   width: var(--arrow-size);
   height: var(--arrow-size);
   background-color: rgba(0, 0, 0, 0);
-  content: url("img/caret-down.svg");
+  content: url('img/caret-down.svg');
 }
 
 .arrow.active {
-  filter: invert(94%) sepia(68%) saturate(714%) hue-rotate(323deg) brightness(102%) contrast(101%);
+  filter: invert(94%) sepia(68%) saturate(714%) hue-rotate(323deg)
+    brightness(102%) contrast(101%);
 }
 
 .arrow.right {
