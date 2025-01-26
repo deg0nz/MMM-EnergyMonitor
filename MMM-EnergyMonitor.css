@@ -29,20 +29,20 @@
   background-color: var(--color-background);
 }
 
-.hidden {
+#energymonitor-wrapper .hidden {
   display: none;
 }
 
-.active {
+#energymonitor-wrapper .active {
   color: #ffe377;
   background-color: #ffe377;
 }
 
-.font-green {
+#energymonitor-wrapper .font-green {
   color: #cdee69;
 }
 
-.font-red {
+#energymonitor-wrapper .font-red {
   color: #e09690;
 }
 
@@ -50,7 +50,7 @@
 *    Icons
 * ****************************************/
 
-.icon {
+#energymonitor-wrapper .icon {
   position: absolute;
   font-size: var(--icon-size);
   color: var(--default-color);
@@ -58,27 +58,27 @@
   text-align: center;
 }
 
-.icon.horizontal {
+#energymonitor-wrapper .icon.horizontal {
   top: calc(var(--vertical-center) - (var(--icon-size) / 2));
 }
 
-.icon.vertical {
+#energymonitor-wrapper .icon.vertical {
   left: calc(var(--horizontal-center) - (var(--icon-size) / 2));
 }
 
-.icon.top {
+#energymonitor-wrapper .icon.top {
   top: -4px;
 }
 
-.icon.bottom {
+#energymonitor-wrapper .icon.bottom {
   bottom: -3px;
 }
 
-.icon.left {
+#energymonitor-wrapper .icon.left {
   left: 0px;
 }
 
-.icon.right {
+#energymonitor-wrapper .icon.right {
   right: 0px;
 }
 
@@ -86,7 +86,7 @@
 *    Labels
 * ****************************************/
 
-.label {
+#energymonitor-wrapper .label {
   position: absolute;
   color: var(--default-color);
   font-family: var(--font-primary);
@@ -102,22 +102,22 @@
   position: absolute;
 }
 
-#home-label {
+#energymonitor-wrapper #home-label {
   left: 20px;
   top: 10px;
 }
 
-#solar-label {
+#energymonitor-wrapper #solar-label {
   left: 20px;
   bottom: 20px;
 }
 
-#battery-label {
+#energymonitor-wrapper #battery-label {
   left: 20px;
   bottom: 20px;
 }
 
-#grid-label {
+#energymonitor-wrapper #grid-label {
   right: 20px;
   bottom: 20px;
 }
@@ -126,15 +126,15 @@
 *    Lines
 * ****************************************/
 
-.line {
+#energymonitor-wrapper .line {
   background-color: var(--default-color);
 }
 
-.line.active {
+#energymonitor-wrapper .line.active {
   background-color: var(--active-color);
 }
 
-.line.vertical {
+#energymonitor-wrapper .line.vertical {
   width: var(--line-width);
   height: var(--vertical-line-length);
   left: calc(var(--horizontal-center) - (var(--line-width) / 2));
@@ -142,29 +142,29 @@
   position: relative;
 }
 
-.line.vertical.up {
+#energymonitor-wrapper .line.vertical.up {
   position: absolute;
   top: var(--line-margin);
 }
 
-.line.vertical.down {
+#energymonitor-wrapper .line.vertical.down {
   position: absolute;
   bottom: var(--line-margin);
 }
 
-.line.horizontal {
+#energymonitor-wrapper .line.horizontal {
   width: var(--horizontal-line-length);
   height: var(--line-width);
   top: calc(var(--vertical-center) - (var(--line-width) / 2));
   border-radius: var(--line-border-radius);
 }
 
-.line.horizontal.left {
+#energymonitor-wrapper .line.horizontal.left {
   position: absolute;
   left: var(--line-margin);
 }
 
-.line.horizontal.right {
+#energymonitor-wrapper .line.horizontal.right {
   position: absolute;
   right: var(--line-margin);
 }
@@ -173,7 +173,7 @@
 *    Arrows
 * ****************************************/
 
-.arrow {
+#energymonitor-wrapper .arrow {
   --arrow-line-distance: calc(-1 * var(--arrow-size) + 3px);
   --arrow-line-centering: calc(
     -1 * (var(--arrow-size) / 2) + (var(--line-width) / 2)
@@ -181,36 +181,36 @@
   width: var(--arrow-size);
   height: var(--arrow-size);
   background-color: rgba(0, 0, 0, 0);
-  content: url('img/caret-down.svg');
+  content: url("img/caret-down.svg");
 }
 
-.arrow.active {
+#energymonitor-wrapper .arrow.active {
   filter: invert(94%) sepia(68%) saturate(714%) hue-rotate(323deg)
     brightness(102%) contrast(101%);
 }
 
-.arrow.right {
+#energymonitor-wrapper .arrow.right {
   position: absolute;
   transform: rotate(-90deg);
   right: var(--arrow-line-distance);
   top: var(--arrow-line-centering);
 }
 
-.arrow.left {
+#energymonitor-wrapper .arrow.left {
   position: absolute;
   transform: rotate(90deg);
   left: var(--arrow-line-distance);
   top: var(--arrow-line-centering);
 }
 
-.arrow.up {
+#energymonitor-wrapper .arrow.up {
   position: absolute;
   transform: rotate(180deg);
   top: var(--arrow-line-distance);
   left: var(--arrow-line-centering);
 }
 
-.arrow.down {
+#energymonitor-wrapper .arrow.down {
   position: absolute;
   bottom: var(--arrow-line-distance);
   left: var(--arrow-line-centering);
