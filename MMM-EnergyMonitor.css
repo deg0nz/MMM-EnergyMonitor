@@ -102,26 +102,6 @@
   position: absolute;
 }
 
-#energymonitor-wrapper #home-label {
-  left: 20px;
-  top: 10px;
-}
-
-#energymonitor-wrapper #solar-label {
-  left: 20px;
-  bottom: 20px;
-}
-
-#energymonitor-wrapper #battery-label {
-  left: 20px;
-  bottom: 20px;
-}
-
-#energymonitor-wrapper #grid-label {
-  right: 20px;
-  bottom: 20px;
-}
-
 /* ****************************************
 *    Lines
 * ****************************************/

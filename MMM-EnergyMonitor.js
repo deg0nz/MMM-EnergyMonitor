@@ -24,7 +24,16 @@ const sizes = {
   large: {
     width: "700px",
     height: "600px",
-    lineWidth: "10px"
+    lineWidth: "10px",
+    lineDistance: "20px",
+    iconDistance: "20px"
+  },
+  medium: {
+    width: "500px",
+    height: "425px",
+    lineWidth: "7px",
+    lineDistance: "14px",
+    iconDistance: "10px"
   }
 };
 
@@ -111,7 +120,10 @@ Module.register("MMM-EnergyMonitor", {
     Log.warn(sizes);
     wrapper.style.setProperty("--width", sizes[this.config.size].width);
     wrapper.style.setProperty("--height", sizes[this.config.size].height);
-    wrapper.style.setProperty("line-width", sizes[this.config.size].lineWidth);
+    wrapper.style.setProperty(
+      "--line-width",
+      sizes[this.config.size].lineWidth
+    );
 
     this.addIcons(wrapper);
 
@@ -179,6 +191,11 @@ Module.register("MMM-EnergyMonitor", {
     solarLabel.classList.add("label");
     solarLabel.innerHTML = `${this.getWattString(this.currentData.solar)} <br>`;
     solarLabel.innerHTML += this.translate("SOLAR_PRODUCING");
+    solarLabel.style.setProperty(
+      "bottom",
+      sizes[this.config.size].lineDistance
+    );
+    solarLabel.style.setProperty("left", sizes[this.config.size].iconDistance);
     solarLine.appendChild(solarLabel);
 
     if (this.currentData.solar > 0) {
@@ -204,6 +221,8 @@ Module.register("MMM-EnergyMonitor", {
     homeLabel.classList.add("label");
     homeLabel.innerHTML = `${this.getWattString(this.currentData.home)}<br>`;
     homeLabel.innerHTML += this.translate("HOME_CONSUMPTION");
+    homeLabel.style.setProperty("top", sizes[this.config.size].iconDistance);
+    homeLabel.style.setProperty("left", sizes[this.config.size].lineDistance);
     homeLine.appendChild(homeLabel);
 
     if (this.currentData.home > 0) {
@@ -231,6 +250,8 @@ Module.register("MMM-EnergyMonitor", {
     gridLabel.innerHTML = `${this.getWattString(
       Math.abs(this.currentData.grid)
     )}<br>`;
+    gridLabel.style.setProperty("top", sizes[this.config.size].lineDistance);
+    gridLabel.style.setProperty("right", sizes[this.config.size].iconDistance);
     gridLine.appendChild(gridLabel);
 
     // Positive value means feeding to grid
@@ -266,6 +287,14 @@ Module.register("MMM-EnergyMonitor", {
     batteryLabel.innerHTML = `${this.getWattString(
       Math.abs(this.currentData.battery)
     )}<br>`;
+    batteryLabel.style.setProperty(
+      "bottom",
+      sizes[this.config.size].iconDistance
+    );
+    batteryLabel.style.setProperty(
+      "right",
+      sizes[this.config.size].lineDistance
+    );
     batteryLine.appendChild(batteryLabel);
 
     if (this.currentData.battery !== 0) batteryLine.classList.add("active");
