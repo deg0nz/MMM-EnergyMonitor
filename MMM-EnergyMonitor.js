@@ -20,14 +20,20 @@ const SIZE_CONFIGS = [
   SIZE_CONFIG_XSMALL
 ];
 
+const sizes = {
+  large: {
+    width: "700px",
+    height: "600px",
+    lineWidth: "10px"
+  }
+};
+
 Module.register("MMM-EnergyMonitor", {
   defaults: {
     name: "MMM-EnergyMonitor",
     hidden: false,
     updateInterval: 3000,
     energyStorage: true,
-    width: "600px",
-    height: "500px",
     size: SIZE_CONFIG_LARGE,
     lineWidth: "7px",
     resetCycles: 4,
@@ -68,6 +74,11 @@ Module.register("MMM-EnergyMonitor", {
       );
       return;
     }
+    if (this.config.width || this.config.height) {
+      Log.warn(
+        "MMM-EnergyMonitor: The properties 'width' and 'height' are deprecated. Use 'size' instead."
+      );
+    }
     this.scheduleUpdate();
 
     this.loaded = true;
@@ -97,9 +108,10 @@ Module.register("MMM-EnergyMonitor", {
     // create element wrapper for show into the module
     const wrapper = document.createElement("div");
     wrapper.id = "energymonitor-wrapper";
-    wrapper.style.setProperty("--width", this.config.width);
-    wrapper.style.setProperty("--height", this.config.height);
-    wrapper.style.setProperty("--line-width", this.config.lineWidth);
+    Log.warn(sizes);
+    wrapper.style.setProperty("--width", sizes[this.config.size].width);
+    wrapper.style.setProperty("--height", sizes[this.config.size].height);
+    wrapper.style.setProperty("line-width", sizes[this.config.size].lineWidth);
 
     this.addIcons(wrapper);
 
