@@ -21,19 +21,50 @@ const SIZE_CONFIGS = [
 ];
 
 const sizes = {
+  xlarge: {
+    width: "900px",
+    height: "768px",
+    lineWidth: "13px",
+    lineDistance: "27px",
+    iconDistance: "23px",
+    innerLabelPadding: "5px",
+    fontSize: "var(--font-size-medium)"
+  },
   large: {
     width: "700px",
     height: "600px",
     lineWidth: "10px",
     lineDistance: "20px",
-    iconDistance: "20px"
+    iconDistance: "20px",
+    innerLabelPadding: "3px",
+    fontSize: "var(--font-size-small)"
   },
   medium: {
     width: "500px",
     height: "425px",
     lineWidth: "7px",
     lineDistance: "14px",
-    iconDistance: "10px"
+    iconDistance: "10px",
+    innerLabelPadding: "2px",
+    fontSize: "var(--font-size-xsmall)"
+  },
+  small: {
+    width: "350px",
+    height: "300px",
+    lineWidth: "5px",
+    lineDistance: "10px",
+    iconDistance: "5px",
+    innerLabelPadding: "1px",
+    fontSize: "0.6rem"
+  },
+  xsmall: {
+    width: "280px",
+    height: "240px",
+    lineWidth: "3px",
+    lineDistance: "7px",
+    iconDistance: "3px",
+    innerLabelPadding: "0px",
+    fontSize: "0.5rem"
   }
 };
 
@@ -117,7 +148,6 @@ Module.register("MMM-EnergyMonitor", {
     // create element wrapper for show into the module
     const wrapper = document.createElement("div");
     wrapper.id = "energymonitor-wrapper";
-    Log.warn(sizes);
     wrapper.style.setProperty("--width", sizes[this.config.size].width);
     wrapper.style.setProperty("--height", sizes[this.config.size].height);
     wrapper.style.setProperty(
@@ -196,6 +226,11 @@ Module.register("MMM-EnergyMonitor", {
       sizes[this.config.size].lineDistance
     );
     solarLabel.style.setProperty("left", sizes[this.config.size].iconDistance);
+    solarLabel.style.setProperty(
+      "padding",
+      sizes[this.config.size].innerLabelPadding
+    );
+    solarLabel.style.setProperty("font-size", sizes[this.config.size].fontSize);
     solarLine.appendChild(solarLabel);
 
     if (this.currentData.solar > 0) {
@@ -223,6 +258,11 @@ Module.register("MMM-EnergyMonitor", {
     homeLabel.innerHTML += this.translate("HOME_CONSUMPTION");
     homeLabel.style.setProperty("top", sizes[this.config.size].iconDistance);
     homeLabel.style.setProperty("left", sizes[this.config.size].lineDistance);
+    homeLabel.style.setProperty(
+      "padding",
+      sizes[this.config.size].innerLabelPadding
+    );
+    homeLabel.style.setProperty("font-size", sizes[this.config.size].fontSize);
     homeLine.appendChild(homeLabel);
 
     if (this.currentData.home > 0) {
@@ -252,6 +292,11 @@ Module.register("MMM-EnergyMonitor", {
     )}<br>`;
     gridLabel.style.setProperty("top", sizes[this.config.size].lineDistance);
     gridLabel.style.setProperty("right", sizes[this.config.size].iconDistance);
+    gridLabel.style.setProperty(
+      "padding",
+      sizes[this.config.size].innerLabelPadding
+    );
+    gridLabel.style.setProperty("font-size", sizes[this.config.size].fontSize);
     gridLine.appendChild(gridLabel);
 
     // Positive value means feeding to grid
@@ -294,6 +339,14 @@ Module.register("MMM-EnergyMonitor", {
     batteryLabel.style.setProperty(
       "right",
       sizes[this.config.size].lineDistance
+    );
+    batteryLabel.style.setProperty(
+      "padding",
+      sizes[this.config.size].innerLabelPadding
+    );
+    batteryLabel.style.setProperty(
+      "font-size",
+      sizes[this.config.size].fontSize
     );
     batteryLine.appendChild(batteryLabel);
 
