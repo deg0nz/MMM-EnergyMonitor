@@ -8,9 +8,9 @@ This module visualizes current energy production and consumption of your home. I
 
 The module has the following features:
 
-- Show live data of power production and consumption of your home
-- The module is developed to be used in _center regions_ of the MagicMirror. If you want to use it somewhere else, please feel free to submit a Pull Request.
-- This module was developed as a companion to [MMM-Fronius2](https://github.com/deg0nz/MMM-Fronius2) and [MMM-VartaESS](https://github.com/deg0nz/MMM-VartaESS) to visualize their data. But other data sources are supported as well.
+* Show live data of power production and consumption of your home
+* The module is developed to be used in _center regions_ of the MagicMirror. If you want to use it somewhere else, please feel free to submit a Pull Request.
+* This module was developed as a companion to [MMM-Fronius2](https://github.com/deg0nz/MMM-Fronius2) and [MMM-VartaESS](https://github.com/deg0nz/MMM-VartaESS) to visualize their data. But other data sources are supported as well.
 
 **Attention: This module depends on external data sources. It _cannot_ be used as standalone module. Please refer to the "Data Sources" section below!**
 
@@ -18,7 +18,7 @@ The module has the following features:
 
 This module has no external dependencies (apart from the data sources mentiones above). Just clone it:
 
-```bash
+``` bash
 cd modules
 git clone https://github.com/deg0nz/MMM-EnergyMonitor
 ```
