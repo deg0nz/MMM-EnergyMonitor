@@ -6,19 +6,15 @@
   --width: 600px;
   --height: 500px;
   --line-width: 8px;
-  --active-color: #ffe377;
+  --active-color: #FFE377;
   --default-color: var(--color-text);
   --line-margin: calc(var(--line-width) * 10);
   --vertical-center: calc(var(--height) / 2);
   --horizontal-center: calc(var(--width) / 2);
   --line-border-radius: calc(var(--line-width) / 5);
   --arrow-size: calc(var(--line-width) * 3);
-  --vertical-line-length: calc(
-    var(--vertical-center) - var(--line-margin) - (var(--arrow-size) * 1.1)
-  );
-  --horizontal-line-length: calc(
-    var(--horizontal-center) - var(--line-margin) - (var(--arrow-size) * 1.1)
-  );
+  --vertical-line-length: calc(var(--vertical-center) - var(--line-margin) - (var(--arrow-size) * 1.1));
+  --horizontal-line-length: calc(var(--horizontal-center) - var(--line-margin) - (var(--arrow-size) * 1.1));
   --icon-size: calc(var(--line-margin) * 0.5);
 
   width: var(--width);
@@ -34,16 +30,16 @@
 }
 
 #energymonitor-wrapper .active {
-  color: #ffe377;
-  background-color: #ffe377;
+  color: #FFE377;
+  background-color: #FFE377;
 }
 
 #energymonitor-wrapper .font-green {
-  color: #cdee69;
+  color: #CDEE69;
 }
 
 #energymonitor-wrapper .font-red {
-  color: #e09690;
+  color: #E09690;
 }
 
 /* ****************************************
@@ -91,7 +87,7 @@
   color: var(--default-color);
   font-family: var(--font-primary);
   font-weight: bold;
-  font-size: var(--font-size-xsmall);
+  font-size: var(--font-size-small);
   border: 2px solid;
   border-color: var(--default-color);
   border-radius: 3px;
@@ -155,9 +151,7 @@
 
 #energymonitor-wrapper .arrow {
   --arrow-line-distance: calc(-1 * var(--arrow-size) + 3px);
-  --arrow-line-centering: calc(
-    -1 * (var(--arrow-size) / 2) + (var(--line-width) / 2)
-  );
+  --arrow-line-centering: calc(-1 * (var(--arrow-size) / 2) + (var(--line-width) / 2));
   width: var(--arrow-size);
   height: var(--arrow-size);
   background-color: rgba(0, 0, 0, 0);
@@ -165,8 +159,7 @@
 }
 
 #energymonitor-wrapper .arrow.active {
-  filter: invert(94%) sepia(68%) saturate(714%) hue-rotate(323deg)
-    brightness(102%) contrast(101%);
+  filter: invert(94%) sepia(68%) saturate(714%) hue-rotate(323deg) brightness(102%) contrast(101%);
 }
 
 #energymonitor-wrapper .arrow.right {
