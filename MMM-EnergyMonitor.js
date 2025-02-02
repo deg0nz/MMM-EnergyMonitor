@@ -75,7 +75,6 @@ Module.register("MMM-EnergyMonitor", {
     updateInterval: 3000,
     energyStorage: true,
     size: SIZE_CONFIG_LARGE,
-    lineWidth: "7px",
     resetCycles: 4,
     logNotifications: false,
     wattConversionOptions: {
@@ -114,9 +113,9 @@ Module.register("MMM-EnergyMonitor", {
       );
       return;
     }
-    if (this.config.width || this.config.height) {
+    if (this.config.width || this.config.height || this.config.lineWidth) {
       Log.warn(
-        "MMM-EnergyMonitor: The properties 'width' and 'height' are deprecated. Use 'size' instead."
+        "MMM-EnergyMonitor: The properties 'width', 'height', and 'lineWidth' are deprecated. Use 'size' instead."
       );
     }
     this.scheduleUpdate();
@@ -148,12 +147,24 @@ Module.register("MMM-EnergyMonitor", {
     // create element wrapper for show into the module
     const wrapper = document.createElement("div");
     wrapper.id = "energymonitor-wrapper";
-    wrapper.style.setProperty("--width", sizes[this.config.size].width);
-    wrapper.style.setProperty("--height", sizes[this.config.size].height);
-    wrapper.style.setProperty(
-      "--line-width",
-      sizes[this.config.size].lineWidth
-    );
+    if (this.config.width) {
+      wrapper.style.setProperty("--width", this.config.width);
+    } else {
+      wrapper.style.setProperty("--width", sizes[this.config.size].width);
+    }
+    if (this.config.height) {
+      wrapper.style.setProperty("--height", this.config.height);
+    } else {
+      wrapper.style.setProperty("--height", sizes[this.config.size].height);
+    }
+    if (this.config.lineWidth) {
+      wrapper.style.setProperty("--line-width", this.config.lineWidth);
+    } else {
+      wrapper.style.setProperty(
+        "--line-width",
+        sizes[this.config.size].lineWidth
+      );
+    }
 
     this.addIcons(wrapper);
 
