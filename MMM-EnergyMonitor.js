@@ -6,15 +6,75 @@
  * MIT Licensed.
  */
 
+const SIZE_CONFIG_XLARGE = "xlarge";
+const SIZE_CONFIG_LARGE = "large";
+const SIZE_CONFIG_MEDIUM = "medium";
+const SIZE_CONFIG_SMALL = "small";
+const SIZE_CONFIG_XSMALL = "xsmall";
+
+const SIZE_CONFIGS = [
+    SIZE_CONFIG_XLARGE,
+    SIZE_CONFIG_LARGE,
+    SIZE_CONFIG_MEDIUM,
+    SIZE_CONFIG_SMALL,
+    SIZE_CONFIG_XSMALL
+];
+
+const sizes = {
+    xlarge: {
+        width: "900px",
+        height: "768px",
+        lineWidth: "13px",
+        lineDistance: "27px",
+        iconDistance: "23px",
+        innerLabelPadding: "5px",
+        fontSize: "var(--font-size-medium)"
+    },
+    large: {
+        width: "700px",
+        height: "600px",
+        lineWidth: "10px",
+        lineDistance: "20px",
+        iconDistance: "20px",
+        innerLabelPadding: "3px",
+        fontSize: "var(--font-size-small)"
+    },
+    medium: {
+        width: "500px",
+        height: "425px",
+        lineWidth: "7px",
+        lineDistance: "14px",
+        iconDistance: "10px",
+        innerLabelPadding: "2px",
+        fontSize: "var(--font-size-xsmall)"
+    },
+    small: {
+        width: "350px",
+        height: "300px",
+        lineWidth: "5px",
+        lineDistance: "10px",
+        iconDistance: "5px",
+        innerLabelPadding: "1px",
+        fontSize: "0.6rem"
+    },
+    xsmall: {
+        width: "280px",
+        height: "240px",
+        lineWidth: "3px",
+        lineDistance: "7px",
+        iconDistance: "3px",
+        innerLabelPadding: "0px",
+        fontSize: "0.5rem"
+    }
+};
+
 Module.register("MMM-EnergyMonitor", {
     defaults: {
         name: "MMM-EnergyMonitor",
         hidden: false,
         updateInterval: 3000,
         energyStorage: true,
-        width: "600px",
-        height: "500px",
-        lineWidth: "7px",
+        size: SIZE_CONFIG_LARGE,
         resetCycles: 4,
         logNotifications: false,
         wattConversionOptions: {
@@ -47,6 +107,19 @@ Module.register("MMM-EnergyMonitor", {
         };
 
         Log.log("MMM-EnergyMonitor started.");
+
+        if (this.config.size && !SIZE_CONFIGS.includes(this.config.size)) {
+            Log.error(
+                `MMM-EnergyMonitor: Invalid size configuration: ${this.config.size}. Please use one of the following: ${SIZE_CONFIGS}`
+            );
+            return;
+        }
+        if (this.config.width || this.config.height || this.config.lineWidth) {
+            Log.warn(
+                "MMM-EnergyMonitor: The properties 'width', 'height', and 'lineWidth' are deprecated. Use 'size' instead."
+            );
+        }
+
         this.scheduleUpdate();
 
         this.loaded = true;
@@ -62,7 +135,7 @@ Module.register("MMM-EnergyMonitor", {
     trackValueReset: function() {
         for (const dataType in this.resetCounter) {
             if (this.resetCounter.hasOwnProperty(dataType)) {
-                
+
                 if(this.resetCounter[dataType] === this.config.resetCycles) {
                     this.currentData[dataType] = 0;
                     this.resetCounter[dataType] = 0;
@@ -77,9 +150,23 @@ Module.register("MMM-EnergyMonitor", {
         // create element wrapper for show into the module
         const wrapper = document.createElement("div");
         wrapper.id = "energymonitor-wrapper";
-        wrapper.style.setProperty("--width", this.config.width);
-        wrapper.style.setProperty("--height", this.config.height);
-        wrapper.style.setProperty("--line-width", this.config.lineWidth);
+        if (this.config.width) {
+            wrapper.style.setProperty("--width", this.config.width);
+        } else {
+            wrapper.style.setProperty("--width", sizes[this.config.size].width);
+        }
+          
+        if (this.config.height) {
+            wrapper.style.setProperty("--height", this.config.height);
+        } else {
+            wrapper.style.setProperty("--height", sizes[this.config.size].height);
+        }
+          
+        if (this.config.lineWidth) {
+            wrapper.style.setProperty("--line-width", this.config.lineWidth);
+        } else {
+            wrapper.style.setProperty("--line-width", sizes[this.config.size].lineWidth);
+        }
 
         this.addIcons(wrapper);
 
@@ -141,12 +228,16 @@ Module.register("MMM-EnergyMonitor", {
     generateSolarLine: function() {
         const solarLine = document.createElement("div");
         solarLine.classList.add("line", "horizontal", "left");
-        
+
         const solarLabel = document.createElement("div");
         solarLabel.id = "solar-label";
         solarLabel.classList.add("label");
         solarLabel.innerHTML = `${this.getWattString(this.currentData.solar)} <br>`;
         solarLabel.innerHTML += this.translate("SOLAR_PRODUCING");
+        solarLabel.style.setProperty("bottom", sizes[this.config.size].lineDistance);
+        solarLabel.style.setProperty("left", sizes[this.config.size].iconDistance);
+        solarLabel.style.setProperty("padding", sizes[this.config.size].innerLabelPadding);
+        solarLabel.style.setProperty("font-size", sizes[this.config.size].fontSize);
         solarLine.appendChild(solarLabel);
 
         if(this.currentData.solar > 0) {
@@ -166,12 +257,16 @@ Module.register("MMM-EnergyMonitor", {
         this.calculateHomeConsumption();
         const homeLine = document.createElement("div");
         homeLine.classList.add("line", "vertical", "up");
-        
+
         const homeLabel = document.createElement("div");
         homeLabel.id = "home-label";
         homeLabel.classList.add("label");
         homeLabel.innerHTML = `${this.getWattString(this.currentData.home)}<br>`;
         homeLabel.innerHTML += this.translate("HOME_CONSUMPTION");
+        homeLabel.style.setProperty("top", sizes[this.config.size].iconDistance);
+        homeLabel.style.setProperty("left", sizes[this.config.size].lineDistance);
+        homeLabel.style.setProperty("padding", sizes[this.config.size].innerLabelPadding);
+        homeLabel.style.setProperty("font-size", sizes[this.config.size].fontSize);
         homeLine.appendChild(homeLabel);
 
         if(this.currentData.home > 0) {
@@ -183,14 +278,13 @@ Module.register("MMM-EnergyMonitor", {
         } else {
             homeLine.classList.add("dimmed");
         }
-
         return homeLine;
     },
 
     generateGridLine: function() {
         const gridLine = document.createElement("div");
         gridLine.classList.add("line", "horizontal", "right");
-                
+
         if(this.currentData.grid !== 0)
             gridLine.classList.add("active");
 
@@ -198,6 +292,10 @@ Module.register("MMM-EnergyMonitor", {
         gridLabel.id = "grid-label";
         gridLabel.classList.add("label");
         gridLabel.innerHTML = `${this.getWattString(Math.abs(this.currentData.grid))}<br>`;
+        gridLabel.style.setProperty("top", sizes[this.config.size].lineDistance);
+        gridLabel.style.setProperty("right", sizes[this.config.size].iconDistance);
+        gridLabel.style.setProperty("padding", sizes[this.config.size].innerLabelPadding);
+        gridLabel.style.setProperty("font-size", sizes[this.config.size].fontSize);
         gridLine.appendChild(gridLabel);
 
         // Positive value means feeding to grid
@@ -231,6 +329,10 @@ Module.register("MMM-EnergyMonitor", {
         batteryLabel.id = "battery-label";
         batteryLabel.classList.add("label");
         batteryLabel.innerHTML = `${this.getWattString(Math.abs(this.currentData.battery))}<br>`;
+        batteryLabel.style.setProperty("bottom", sizes[this.config.size].iconDistance);
+        batteryLabel.style.setProperty("right", sizes[this.config.size].lineDistance);
+        batteryLabel.style.setProperty("padding", sizes[this.config.size].innerLabelPadding);
+        batteryLabel.style.setProperty("font-size", sizes[this.config.size].fontSize);
         batteryLine.appendChild(batteryLabel);
 
         if(this.currentData.battery !== 0)
@@ -268,7 +370,7 @@ Module.register("MMM-EnergyMonitor", {
         if (wattConversionOptions.enabled && value > wattConversionOptions.threshold) {
           return `${(value / 1000).toFixed(wattConversionOptions.numDecimalDigits)} KW`;
         }
-    
+
         return `${Math.round(value)} W`;
     },
 
@@ -298,21 +400,20 @@ Module.register("MMM-EnergyMonitor", {
         if(typeof payload !== "number") {
             if(this.config.logNotifications)
                 Log.log(`EnergyMonitor received data that is ${typeof payload}: ${payload} from sender: ${sender.name} via notification: ${notification}`);
-          
+
             return false;
         } else {
             if(this.config.logNotifications)
                 Log.log(`EnergyMonitor received data: ${payload} from sender: ${sender.name} via notification: ${notification}`);
-            
+
             return true;
         } 
     },
 
-
     notificationReceived(notification, payload, sender) {
         if(!this.loaded)
             return;
-        
+
         // Unit: Watt | negative: discharge | positive: charge
         if (notification === "MMM-EnergyMonitor_ENERGY_STORAGE_POWER_UPDATE") {
             if(!this.validateNumberPayload(notification, payload, sender))

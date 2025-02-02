@@ -9,7 +9,7 @@ This module visualizes current energy production and consumption of your home. I
 The module has the following features:
 
 * Show live data of power production and consumption of your home
-* The module is developed to be used in *center regions* of the MagicMirror. If you want to use it somewhere else, please feel free to submit a Pull Request.
+* The module is developed to be used in _center regions_ of the MagicMirror. If you want to use it somewhere else, please feel free to submit a Pull Request.
 * This module was developed as a companion to [MMM-Fronius2](https://github.com/deg0nz/MMM-Fronius2) and [MMM-VartaESS](https://github.com/deg0nz/MMM-VartaESS) to visualize their data. But other data sources are supported as well.
 
 **Attention: This module depends on external data sources. It _cannot_ be used as standalone module. Please refer to the "Data Sources" section below!**
@@ -46,16 +46,14 @@ To use this module, add the following configuration block to the modules array i
 
 ## Configuration options
 
-*Note: You should test various combinations of `width`, `height` and `lineWidth` that work for your mirror resolution. All the other values are calculated and should scale automatically*
+*Note: You should test `size`s that work for your mirror resolution. All the other values are calculated and should scale automatically*
 
 Please refer to [MMM-EnergyMonitor default configuration](MMM-EnergyMonitor.js) to prevent syntax errors.
 
 | Option           | Description
 |----------------- |-----------
 | `energyStorage`  | *Optional* Configure if you have Energy Storage System installed in your home and it should be displayed by the module<br><br>**Type:** `boolean` (yes/no) <br>Default: `true` (yes - ESS installed)
-| `height`         | *Optional* The height of the module<br><br>**Type:** CSS size value <br>Default: `600px` (600 Pixel)
-| `width`          | *Optional* The width of the module<br><br>**Type:** CSS size value <br>Default: `700px` (700 Pixel)
-| `lineWidth`      | *Optional* Thickness of the lines pointing to the center<br><br>**Type:** CSS size value <br>Default: `10px` (10 Pixel)
+| `size`           | The size of the module. Can be one of<br>- xlarge<br>- large<br>- medium<br>- small<br>- xsmall<br><br>**Type:** String<br>Default: `large` (700 pixels wide and 600 pixels high pixel)
 | `updateInterval` | *Optional* How often should the UI be updated<br><br>**Type:** `int` (milliseconds) <br>Default: `3000` milliseconds (3 seconds)
 | `resetCycles` | *Optional* After how many UI update cycles without new data should the values be reset to 0. *Note: `resetCycles` * `updateInterval` musst be greater than the interval that updates the actual data!*<br><br>**Type:** `int` (cycles) <br>Default: `3` cycles
 | `logNotifications` | *Optional* If the module should log the data notifications/updates it receives. This value is good for debugging if the module shows weird values.<br><br>**Type:** `boolean` (on/off)<br>Default: `false` off
